@@ -1,5 +1,6 @@
 #Folders to ignore
 .vscode/
-
+.idea/
+cmake-build-debug/
 #Compilation files
 *.out
