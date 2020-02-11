@@ -7,8 +7,8 @@ int main() {
 	// erros semânticos
 	// print
 	// calcular as raizes do polinomio ax^2 + bx+ c = 0
-	float a=0, b=0, c=0, x1=0, x2=0;
-	//
+	float a, b, c, x1, x2;
+	a, b, c, x1, x2 = 0;
 	printf("introduza os valores dos termos a, b e c do polinimio ax^2 + bx+ c\n");
 	scanf("%f %f %f",&a,&b,&c);
 	x1 = (-1.0 * b + sqrt(pow(b,2) - 4.0 * a * c)) /(2.0 * a);
