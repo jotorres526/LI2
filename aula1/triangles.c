@@ -11,6 +11,8 @@ int valid(float a, float b, float c) {
 		if(b > abs(a - c) && b < a + c) { 
 			if(c > abs(b - a) && c < a + b) { 
 				r=1;	
+			} else {
+				printf("Invalid triangle\n");
 			}
 		}
 	}
@@ -50,7 +52,6 @@ int main() {
 	printf("Input 3 values: \n");
 	scanf("%f %f %f", &a, &b, &c);
 	if (valid(a, b, c) == 0) {
-		printf("Invalid triangle\n");
 		return -1;
 	}
 	type(a, b, c);
