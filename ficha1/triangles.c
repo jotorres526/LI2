@@ -7,12 +7,10 @@
 int valid(int a, int b, int c) {
 	int r;
 	r = 0;
-	if(a > abs(b - c) && a < b + c) {
-		if(b > abs(a - c) && b < a + c) { 
-			if(c > abs(b - a) && c < a + b) { 
+	if(a > abs(b - c) && a < b + c &&
+	   b > abs(a - c) && b < a + c &&
+	   c > abs(b - a) && c < a + b) {
 				r=1;	
-			}
-		}
 	}
 	return r;
 }
@@ -34,7 +32,7 @@ void type(int a, int b, int c) {
 float area(int a, int b, int c) {
 	float s;
 	float r; 
-	s = (a + b + c)/2.0f;
+	s = (a + b + c) / 2.0f;
 	r = sqrt(s * (s - a) * (s - b) * (s - c));
 	printf("This triangle has an area of: %f\n", r);
 	return r;
