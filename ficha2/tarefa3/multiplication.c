@@ -19,14 +19,17 @@ int main() {
     genQuestion(&n1, &n2);
     while(1) {
         rchar = rand() % 3;
-        scanf("%d", &a);
-        if((n1 * n2) == a) {
+        if(scanf("%d", &a) != 1) {
+            printf("Introduz apenas um número.\n");
+        } 
+        else if( (n1 * n2) == a) {
             printf("%s\n", lc[rchar]);
             genQuestion(&n1, &n2); 
         } else {
             printf("%s\n", lw[rchar]);
             printf("Quanto é %d vezes %d?\n", n1, n2);
         }
+        getchar();
     }
     return 0;
 }
