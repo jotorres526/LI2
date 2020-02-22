@@ -2,6 +2,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define CORRECT 1
+#define WRONG 0
+
 //Generates 2 int's and asks what's the product between those two numbers
 //rand() % (max_number + 1 - minimum_number) + minimum_number
 void genQuestion(int *n1, int *n2) {
@@ -11,22 +14,31 @@ void genQuestion(int *n1, int *n2) {
     printf("Quanto é %d vezes %d?\n", *n1, *n2);
 }
 
+//Generates a comment for correct and wrong answers
+//Receives an int isCorrect :: {0,1}
+//if isCorrect = 1 generates correct comment, otherwise generates wrong comment 
+void genComment(int isCorrect) {
+    int randint;
+    char *correct[] = {"Ótimo!", "Belo Trabalho!", "Continua assim!"};
+    char *wrong[] = {"Errado, tenta novamente...", "Não, tente mais uma vez.", "Não desistas!"};
+    randint = rand() % 3;
+    if(isCorrect) printf("%s\n",correct[randint]);
+    else printf("%s\n", wrong[randint]);
+}
+
 //main
 int main() {
-    int a, n1, n2, rchar;
-    char *lc[] = {"Ótimo!", "Belo Trabalho!", "Continua assim!"};
-    char *lw[] = {"Errado, tenta novamente...", "Não, tente mais uma vez.", "Não desistas!"};
+    int input, n1, n2;
     genQuestion(&n1, &n2);
     while(1) {
-        rchar = rand() % 3;
-        if(scanf("%d", &a) != 1) {
+        if(scanf("%d", &input) != 1) {
             printf("Introduz apenas um número.\n");
         } 
-        else if( (n1 * n2) == a) {
-            printf("%s\n", lc[rchar]);
+        else if((n1 * n2) == input) {
+            genComment(CORRECT);
             genQuestion(&n1, &n2); 
         } else {
-            printf("%s\n", lw[rchar]);
+            genComment(WRONG);
             printf("Quanto é %d vezes %d?\n", n1, n2);
         }
         getchar();
