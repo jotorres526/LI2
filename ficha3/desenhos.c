@@ -30,8 +30,11 @@ void drawSeq(int height, int line) {
 
 
 //Prints a sequence of characters forming a triangle
-//The vertical size of the triangle is given by the parameter 'height' 
 void imprime_triangulo(int height) {
+    if(height < 2) {
+        printf("Um triangulo necessita de uma altura maior que 1.\n");
+        return;
+    }
     for(int i = 1; i <= height; i++) {
         drawSpaces(height, i);
         drawSeq(height, i);
@@ -40,12 +43,17 @@ void imprime_triangulo(int height) {
 }
 
 //Prints a sequence of characters forming a diamond
-//The vertical size of the diamond is given by the parameter 'height' 
-//Starts out by calculating the "fstHalf" and prints a triangle based on that height
-//Prints an inverted triangle based on the "sndHalf" 
+//Starts out by calculating the "fstHalf" and prints a triangle based on its height
+//Then, prints an inverted triangle based on the "sndHalf" 
 //fstHalf >= sndHalf
 void imprime_losango(int height) {
     int fstHalf, sndHalf;
+    
+    if(height < 3) {
+        printf("Um losango necessita de uma altura maior que 2.\n");
+        return;
+    }
+    
     fstHalf = (height + 1) / 2; //adding 1 to height to ensure it's always superior to 'sndHalf'
     sndHalf = height - fstHalf;
     imprime_triangulo(fstHalf);
@@ -58,7 +66,37 @@ void imprime_losango(int height) {
     }
 }
 
-//TODO
-void imprime_hexagono(int height){
+//Receives an hexagon line and height
+//Prints a line of that hexagon
+void drawHexLine(int height, int line) {
+    int nspaces, ntags;
+    nspaces = height - line;
+    ntags = 2 + 2 * line;
+    for(int j = 0; j < nspaces; j++) putchar(' ');
+    for(int j = 0; j < ntags; j++) {
+        if (j == 0 || j == (ntags - 1) || line == 1) putchar('#');
+        else putchar(' ');
+    }
+    putchar('\n');
+}
 
+//Prints a sequence of characters forming a hexagon
+//Starts out by calculating the "fstHalf" and prints the top part of the shape
+//Then, prints the bottom part based on the "sndHalf" 
+//fstHalf >= sndHalf
+void imprime_hexagono(int height){
+    int fstHalf, sndHalf;
+    if(height < 3) {
+        printf("Um hexagono necessita de uma altura maior que 2.\n");
+        return;
+    }
+    fstHalf = (height + 1) / 2;
+    sndHalf = height - fstHalf;
+     //4 + 2(lines - 1) (=) 4 + 2lines - 2 (=) 2 + 2lines
+    for(int line = 1; line <= fstHalf; line++) {
+        drawHexLine(fstHalf, line);
+    }
+    for(int line = sndHalf; line > 0; line--) {
+        drawHexLine(fstHalf, line);
+    }
 }
