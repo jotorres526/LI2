@@ -47,20 +47,19 @@ void imprime_triangulo(int height) {
 //Then, prints an inverted triangle based on the "sndHalf" 
 //fstHalf >= sndHalf
 void imprime_losango(int height) {
-    int fstHalf, sndHalf;
+    int sndHalf;
     
-    if(height < 3) {
-        printf("Um losango necessita de uma altura maior que 2.\n");
+    if(height < 2) {
+        printf("Um losango necessita de uma altura maior que 1.\n");
         return;
     }
     
-    fstHalf = (height + 1) / 2; //adding 1 to height to ensure it's always superior to 'sndHalf'
-    sndHalf = height - fstHalf;
-    imprime_triangulo(fstHalf);
+    sndHalf = height - 1;
+    imprime_triangulo(height);
     //Starts the loop on the sndHalf but still prints spaces based on the first half
     //so the middle line doesn't print twice, but the spaces display correctly
     for(int i = sndHalf; i != 0; i--) {
-        drawSpaces(fstHalf, i);
+        drawSpaces(height, i);
         drawSeq(sndHalf, i);
         putchar('\n');
     }
@@ -71,7 +70,7 @@ void imprime_losango(int height) {
 void drawHexLine(int height, int line) {
     int nspaces, ntags;
     nspaces = height - line;
-    ntags = 2 + 2 * line;
+    ntags = height + 2 * (line - 1);
     for(int j = 0; j < nspaces; j++) putchar(' ');
     for(int j = 0; j < ntags; j++) {
         if (j == 0 || j == (ntags - 1) || line == 1) putchar('#');
@@ -85,18 +84,17 @@ void drawHexLine(int height, int line) {
 //Then, prints the bottom part based on the "sndHalf" 
 //fstHalf >= sndHalf
 void imprime_hexagono(int height){
-    int fstHalf, sndHalf;
+    int sndHalf;
     if(height < 3) {
         printf("Um hexagono necessita de uma altura maior que 2.\n");
         return;
     }
-    fstHalf = (height + 1) / 2;
-    sndHalf = height - fstHalf;
+    sndHalf = height - 1;
      //4 + 2(lines - 1) (=) 4 + 2lines - 2 (=) 2 + 2lines
-    for(int line = 1; line <= fstHalf; line++) {
-        drawHexLine(fstHalf, line);
+    for(int line = 1; line <= height; line++) {
+        drawHexLine(height, line);
     }
     for(int line = sndHalf; line > 0; line--) {
-        drawHexLine(fstHalf, line);
+        drawHexLine(height, line);
     }
 }
