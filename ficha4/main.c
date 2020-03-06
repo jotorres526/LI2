@@ -8,30 +8,35 @@
 //argv[] -> argument vector
     //array of strings
     //argv[0] name of the program
-int main(int argc, char **argv) {
-    if(argc == 5) {
-        int tarefa = atoi(argv[1]);
-        int arrSize = atoi(argv[2]);
-        int arr[arrSize];
-        char *strtmp = strtok(argv[3], ",");
-        FOREACH(arrSize) {
-            arr[i] = atoi(strtmp);
-            strtmp = strtok(NULL, ","); 
-        } 
-        int lstArg = atoi(argv[4]);
-        switch(tarefa) {
-        case 1:
-            soma_elemento(arr, arrSize, lstArg);
-            break;
-        case 2:
-            roda_esq(arr, arrSize, lstArg);
-            break;
-        case 3:
-            remove_menores(arr, arrSize, lstArg);
-            break;
-        default:
-            break;
+int main() {
+        int tarefa;
+        printf("Escolha uma tarefa de 1 a 3 (1 -> soma; 2 -> roda esquerda; 3 -> remove menores)\n");
+        scanf("%d", &tarefa);
+        if(tarefa > 0 && tarefa < 4) {
+            int arrSize;
+            printf("Qual vai ser o tamanho do array?\n");
+            scanf("%d", &arrSize);
+            int arr[arrSize];
+            printf("Introduza agora os elementos do array (separado por espaços ou por newlines)\n");
+            FORI(arrSize) {
+                scanf("%d", (arr + i));
+            } 
+            int lstArg;
+            printf("Introduza o ultimo argumento da tarefa %d\n", tarefa);
+            scanf("%d", &lstArg);
+            switch(tarefa) {
+            case 1:
+                soma_elemento(arr, arrSize, lstArg);
+                break;
+            case 2:
+                roda_esq(arr, arrSize, lstArg);
+                break;
+            case 3:
+                remove_menores(arr, arrSize, lstArg);
+                break;
+            default:
+                break;
+            }
         }
-    }
     return 0;
 }
