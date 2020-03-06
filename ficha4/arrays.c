@@ -5,9 +5,6 @@ void soma_elemento(int *arr, int dim, int idx) {
         int tmp = arr[idx];
         FORI(dim) arr[i] += tmp;
     }
-    printf("Soma elemento: | ");
-    FORI(dim) printf("%d | ", arr[i]);
-    putchar('\n');
 }
 
 void roda_esq(int *arr, int dim, int shifter) {
@@ -19,14 +16,13 @@ void roda_esq(int *arr, int dim, int shifter) {
             arr[dim - 1] = tmp;
         }
     }
-    printf("Roda esquerda: | ");
-    FORI(dim) printf("%d | ", arr[i]);
-    putchar('\n');
 }
 
+
+//Needs some bug fixing to preserve the order
 void toEnd(int *arr, int dim, int idx) {
     int tmp;
-    FOR_I_TO_N(idx, dim - 1) {
+    FOR_I_TO_N(idx, dim) {
         tmp = arr[i];
         arr[i] = arr[i + 1];
         arr[i + 1] = tmp;
@@ -36,12 +32,7 @@ void toEnd(int *arr, int dim, int idx) {
 int remove_menores(int *arr, int dim, int valor) {
     int i = 0;
     while(i < dim)
-        if(arr[i] < valor) {
-            toEnd(arr, dim, i);
-            dim--;
-        } else i++;
-    printf("Remove menores: | ");
-    FORI(dim) printf("%d | ", arr[i]);
-    putchar('\n');
+        if(arr[i] < valor) toEnd(arr, dim--, i);
+        else i++;
     return dim;
 }
