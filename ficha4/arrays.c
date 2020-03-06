@@ -31,8 +31,12 @@ void toEnd(int *arr, int dim, int idx) {
 
 int remove_menores(int *arr, int dim, int valor) {
     int i = 0;
-    while(i < dim)
-        if(arr[i] < valor) toEnd(arr, dim--, i);
+    int j = dim;
+    while(i < j)
+        if(arr[i] < valor) {
+            roda_esq(arr + i, dim - i, 1);
+            j--;
+        }
         else i++;
-    return dim;
+    return j;
 }
